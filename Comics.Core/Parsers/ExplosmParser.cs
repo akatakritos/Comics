@@ -50,5 +50,16 @@ namespace Comics.Core.Parsers
             builder.Scheme = "http";
             return builder.Uri;
         }
+
+        public static string ParsePermalink(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var textbox = doc.GetElementbyId("permalink");
+            var urlOfCurrent = textbox.GetAttributeValue("value", null);
+
+            return urlOfCurrent;
+        }
     }
 }

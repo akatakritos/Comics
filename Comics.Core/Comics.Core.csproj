@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Downloaders\ExplosmDownloader.cs" />
+    <Compile Include="Downloaders\ExplosmWebClient.cs" />
     <Compile Include="Parsers\ComicParseResult.cs" />
     <Compile Include="Parsers\ExplosmParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
