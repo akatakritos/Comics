@@ -140,6 +140,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fixtures\explosm-4124.txt" />
     <Content Include="Fixtures\explosm-4125.txt" />
     <Content Include="Fixtures\explosm-latest.txt" />
     <Content Include="License.txt" />

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+
+using HtmlAgilityPack;
 
 namespace Comics.Core.Downloaders
 {
-    public interface IExplosmWebClient
-    {
-        ComicDownloadResult GetComicHtml(int comicNumber);
-    }
+
 
     // ReSharper disable once ClassNeverInstantiated.Global
     public class ExplosmDownloader
@@ -21,17 +21,32 @@ namespace Comics.Core.Downloaders
 
         public IEnumerable<ComicDownloadResult> GetNewComics(int lastComic)
         {
-            ComicDownloadResult result;
+            var result = _client.GetComicHtml(lastComic);
+            var next = ParseNextComicNumber(result.Content);
 
-            do
+            while(next.HasValue)
             {
-                lastComic++;
+                lastComic = next.Value;
                 result = _client.GetComicHtml(lastComic);
+                yield return result;
 
-                if (!result.NotFound)
-                    yield return result;
+                next = ParseNextComicNumber(result.Content);
+            }
+        }
 
-            } while (!result.NotFound);
+        private static int? ParseNextComicNumber(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+            var nextLink = doc.QuerySelector("a.next-comic");
+
+            var nextUrl = nextLink?.GetAttributeValue("href", null);
+            if (nextUrl == null)
+                return null;
+
+            var match = Regex.Match(nextUrl, @"/(\d+)/?$");
+            return int.Parse(match.Groups[1].Value);
+
         }
     }
 }

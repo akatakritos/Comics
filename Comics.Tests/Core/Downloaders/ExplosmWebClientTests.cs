@@ -20,7 +20,6 @@ namespace Comics.Tests.Core.Downloaders
 
             var result = client.GetComicHtml(4125);
 
-            Check.That(result.StatusCode).IsEqualTo(200);
             Check.That(result.Content).IsNotEmpty();
         }
 
@@ -29,10 +28,7 @@ namespace Comics.Tests.Core.Downloaders
         {
             var client = new ExplosmWebClient();
 
-            var result = client.GetComicHtml(9999999);
-
-            Check.That(result.StatusCode).IsEqualTo(404);
-            Check.That(result.NotFound).IsTrue();
+            Check.ThatCode(() => client.GetComicHtml(999999)).Throws<ComicNotFoundException>();
         }
 
     }

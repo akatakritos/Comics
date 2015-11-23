@@ -16,27 +16,25 @@ namespace Comics.Tests.Core.Downloaders
     public class ExplosmDownloaderTests
     {
         [Fact]
-        public void DownloaderGoesUntilIt404s()
+        public void DownloadsWhileThereIsAValidNextLink()
         {
             var mocker = new AutoMoqer();
-            var result1000 = new ComicDownloadResult(200, "<html />", 1000, new Uri("http://a/"));
-            var result1001 = new ComicDownloadResult(200, "<html />", 1001, new Uri("http://a/"));
+            // depends on 4125 fixture not having a next link
+            var result4124 = new ComicDownloadResult(Fixture.Load("explosm-4124"), 4124, new Uri("http://explosm.net/comics/4124/"));
+            var result4125 = new ComicDownloadResult(Fixture.Load("explosm-4125"), 4125, new Uri("http://explosm.net/comics/4125/"));
 
             mocker.GetMock<IExplosmWebClient>()
-                .Setup(m => m.GetComicHtml(1000))
-                .Returns(result1000);
+                .Setup(m => m.GetComicHtml(4124))
+                .Returns(result4124);
             mocker.GetMock<IExplosmWebClient>()
-                .Setup(m => m.GetComicHtml(1001))
-                .Returns(result1001);
-            mocker.GetMock<IExplosmWebClient>()
-                .Setup(m => m.GetComicHtml(1002))
-                .Returns(new ComicDownloadResult(404, "", 1002, new Uri("http://a")));
+                .Setup(m => m.GetComicHtml(4125))
+                .Returns(result4125);
 
             var downloader = mocker.Create<ExplosmDownloader>();
 
-            var comics = downloader.GetNewComics(999);
+            var comics = downloader.GetNewComics(4124);
 
-            Check.That(comics).ContainsExactly(result1000, result1001);
+            Check.That(comics).ContainsExactly(result4125);
 
         }
     }
