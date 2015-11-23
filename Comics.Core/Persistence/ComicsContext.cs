@@ -5,12 +5,6 @@ using System.Linq;
 
 namespace Comics.Core.Persistence
 {
-    public interface IComicsRepository
-    {
-        Comic GetLastImportedComic(ComicType type);
-        void InsertComic(Comic comic);
-    }
-
     public class ComicsContext : DbContext
     {
         public ComicsContext() : base()

@@ -65,6 +65,7 @@
     <Compile Include="Parsers\ExplosmParser.cs" />
     <Compile Include="Persistence\Comic.cs" />
     <Compile Include="Persistence\ComicsContext.cs" />
+    <Compile Include="Persistence\ComicsRepository.cs" />
     <Compile Include="Persistence\ComicType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
