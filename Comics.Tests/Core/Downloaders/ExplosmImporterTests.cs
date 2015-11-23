@@ -25,10 +25,11 @@ namespace Comics.Tests.Core.Downloaders
                 .Returns(new Comic() { ComicNumber = 4124 });
             mocker.GetMock<IExplosmWebClient>()
                 .Setup(m => m.GetComicHtml(4125))
-                .Returns(new ComicDownloadResult(200, Fixture.Load("explosm-4125"), 4125));
+                .Returns(new ComicDownloadResult(200, Fixture.Load("explosm-4125"), 4125, new Uri("http://www.google.com/")));
+
             mocker.GetMock<IExplosmWebClient>()
                 .Setup(m => m.GetComicHtml(4126))
-                .Returns(new ComicDownloadResult(404, "", 4126));
+                .Returns(new ComicDownloadResult(404, "", 4126, new Uri("http://www.google.com/")));
 
             _mocker = mocker;
         }
@@ -71,6 +72,16 @@ namespace Comics.Tests.Core.Downloaders
             _mocker.GetMock<IComicsRepository>()
                 .Verify(m => m.InsertComic(
                     It.Is<Comic>(c => c.ComicType == ComicType.Explosm)), Times.Once);
+        }
+
+        [Fact]
+        public void InsertedComicContainsThePermalink()
+        {
+            _mocker.Create<ExplosmImporter>().ImportNewComics();
+
+            _mocker.GetMock<IComicsRepository>()
+                .Verify(m => m.InsertComic(
+                    It.Is<Comic>(c => c.Permalink == "http://www.google.com/")), Times.Once);
         }
 
 

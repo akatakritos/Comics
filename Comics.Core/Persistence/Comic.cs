@@ -18,6 +18,8 @@ namespace Comics.Core.Persistence
 
         public DateTime PublishedDate { get; set; }
 
+        public string Permalink { get; set; }
+
         public override string ToString()
         {
             return $"{ComicType} ({ComicNumber}) published {PublishedDate}";

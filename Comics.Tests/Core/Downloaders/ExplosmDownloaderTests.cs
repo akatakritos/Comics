@@ -19,8 +19,8 @@ namespace Comics.Tests.Core.Downloaders
         public void DownloaderGoesUntilIt404s()
         {
             var mocker = new AutoMoqer();
-            var result1000 = new ComicDownloadResult(200, "<html />", 1000);
-            var result1001 = new ComicDownloadResult(200, "<html />", 1001);
+            var result1000 = new ComicDownloadResult(200, "<html />", 1000, new Uri("http://a/"));
+            var result1001 = new ComicDownloadResult(200, "<html />", 1001, new Uri("http://a/"));
 
             mocker.GetMock<IExplosmWebClient>()
                 .Setup(m => m.GetComicHtml(1000))
@@ -30,7 +30,7 @@ namespace Comics.Tests.Core.Downloaders
                 .Returns(result1001);
             mocker.GetMock<IExplosmWebClient>()
                 .Setup(m => m.GetComicHtml(1002))
-                .Returns(new ComicDownloadResult(404, "", 1002));
+                .Returns(new ComicDownloadResult(404, "", 1002, new Uri("http://a")));
 
             var downloader = mocker.Create<ExplosmDownloader>();
 

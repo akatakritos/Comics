@@ -33,7 +33,8 @@ namespace Comics.Core.Downloaders
                     ComicType = ComicType.Explosm,
                     ComicNumber = result.ComicNumber,
                     ImageSrc = parseResult.ImageUri.ToString(),
-                    PublishedDate = parseResult.PublishedDate
+                    PublishedDate = parseResult.PublishedDate,
+                    Permalink = result.Permalink.ToString(),
                 };
 
                 _comicsRepository.InsertComic(comic);

@@ -11,10 +11,11 @@ namespace Comics.Core.Downloaders
         {
             var client = new HttpClient();
 
-            var response = client.GetAsync(new Uri($"http://explosm.net/comics/{comicNumber}/")).Result;
+            var permalink = new Uri($"http://explosm.net/comics/{comicNumber}/");
+            var response = client.GetAsync(permalink).Result;
             var content = response.Content.ReadAsStringAsync().Result;
 
-            return new ComicDownloadResult((int)response.StatusCode, content, comicNumber);
+            return new ComicDownloadResult((int)response.StatusCode, content, comicNumber, permalink);
         }
     }
 }
