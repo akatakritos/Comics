@@ -7,7 +7,12 @@ using Comics.Core.Persistence;
 
 namespace Comics.Core.Downloaders
 {
-    public class ExplosmImporter
+    public interface IExplosmImporter
+    {
+        void ImportNewComics(int defaultStart = 4125);
+    }
+
+    public class ExplosmImporter : IExplosmImporter
     {
         private readonly IComicsRepository _comicsRepository;
         private readonly IExplosmWebClient _explosmClient;
