@@ -14,7 +14,7 @@ namespace Comics.Core.Downloaders
             var response = client.GetAsync(new Uri($"http://explosm.net/comics/{comicNumber}/")).Result;
             var content = response.Content.ReadAsStringAsync().Result;
 
-            return new ComicDownloadResult((int)response.StatusCode, content);
+            return new ComicDownloadResult((int)response.StatusCode, content, comicNumber);
         }
     }
 }

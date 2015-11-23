@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
+    <Compile Include="Core\Downloaders\ExplosmImporterTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmWebClientTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParsePermalinkTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParseTests.cs" />

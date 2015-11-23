@@ -50,9 +50,11 @@
   <ItemGroup>
     <Compile Include="Downloaders\ComicDownloadResult.cs" />
     <Compile Include="Downloaders\ExplosmDownloader.cs" />
+    <Compile Include="Downloaders\ExplosmImporter.cs" />
     <Compile Include="Downloaders\ExplosmWebClient.cs" />
     <Compile Include="Parsers\ComicParseResult.cs" />
     <Compile Include="Parsers\ExplosmParser.cs" />
+    <Compile Include="Persistence\ComicsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
