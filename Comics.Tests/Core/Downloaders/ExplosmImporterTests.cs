@@ -85,5 +85,19 @@ namespace Comics.Tests.Core.Downloaders
         }
 
 
+        [Fact]
+        public void IfThereAreNoComics_ItStartsAtTheDefault()
+        {
+            _mocker.GetMock<IComicsRepository>()
+                .Setup(m => m.GetLastImportedComic(ComicType.Explosm))
+                .Returns((Comic)null);
+
+            _mocker.Create<ExplosmImporter>().ImportNewComics(4124); //bc 4124 and 4125 are setup in ctor
+
+            _mocker.GetMock<IComicsRepository>()
+                .Verify(m => m.InsertComic(
+                    It.Is<Comic>(c => c.ComicNumber == 4125)), Times.Once);
+        }
+
     }
 }

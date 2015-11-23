@@ -18,12 +18,14 @@ namespace Comics.Core.Downloaders
             _explosmClient = explosmClient;
         }
 
-        public void ImportNewComics()
+        public void ImportNewComics(int defaultStart = 4125)
         {
             var lastComic = _comicsRepository.GetLastImportedComic(ComicType.Explosm);
 
+            var lastComicNumber = lastComic?.ComicNumber ?? defaultStart;
+
             var downloader = new ExplosmDownloader(_explosmClient);
-            var results = downloader.GetNewComics(lastComic.ComicNumber);
+            var results = downloader.GetNewComics(lastComicNumber);
 
             foreach (var result in results)
             {
