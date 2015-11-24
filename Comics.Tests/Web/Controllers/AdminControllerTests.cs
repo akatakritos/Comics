@@ -25,9 +25,13 @@ namespace Comics.Tests.Web.Controllers
             //Requires appsetting: AdminAuthToken
             var mocker = new AutoMoqer();
 
+            Check.That(ConfigurationManager.AppSettings["AdminAuthToken"]).IsNotEmpty();
+            Check.That(ConfigurationManager.AppSettings["AdminAuthToken"]).IsNotNull();
+
             var result = mocker.Create<AdminController>().Refresh(authToken: "foobar");
 
             Check.That(ConfigurationManager.AppSettings["AdminAuthToken"]).IsNotEmpty();
+            Check.That(ConfigurationManager.AppSettings["AdminAuthToken"]).IsNotNull();
             Check.That(ConfigurationManager.AppSettings["AdminAuthToken"]).IsNotEqualTo("foobar");
             Check.That(result).IsInstanceOf<HttpUnauthorizedResult>();
         }
