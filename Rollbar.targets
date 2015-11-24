@@ -8,8 +8,8 @@
       <Output TaskParameter="ConsoleOutput" PropertyName="GitEmail" />
     </Exec>
  
-    <Message Text="Rollbar.AccessToken: $(APPSETTING_Rollbar.AccessToken)" Importance="High" />
-    <Message Text="Rollbar.Environment: $(APPSETTING_Rollbar.Environment)" Importance="High" />
+    <Message Text="Rollbar.AccessToken: $(APPSETTING_RollbarAccessToken)" Importance="High" />
+    <Message Text="Rollbar.Environment: $(APPSETTING_RollbarEnvironment)" Importance="High" />
     <Message Text="Git SHA: $(GitSHA)" Importance="High" />
     <Message Text="Rollbar: $(GitEmail) deployed @(RollbarEnvironment) revision $(GitSHA)" Importance="High" />
     <Exec Command="@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;(new-object net.webclient).UploadString('https://api.rollbar.com/api/1/deploy/', 'access_token=$(APPSETTING_RollbarAccessToken)&amp;environment=$(APPSETTING_RollbarEnvironment)&amp;revision=$(GitSHA)&amp;local_username=$(GitEmail)')&quot;" EchoOff="true" />
