@@ -30,5 +30,13 @@ namespace Comics.Web.Controllers
             _comicImporter.ImportNewComics();
             return new EmptyResult();
         }
+
+        public ActionResult ThrowException(string authToken)
+        {
+            if (authToken != ConfigurationManager.AppSettings["AdminAuthToken"])
+                return new HttpUnauthorizedResult();
+
+            throw new Exception("Test Exception for Rollbar");
+        }
     }
 }
