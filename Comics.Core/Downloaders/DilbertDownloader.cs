@@ -4,10 +4,7 @@ using System.Linq;
 
 namespace Comics.Core.Downloaders
 {
-    public interface IDilbertWebClient
-    {
-        ComicDownloadResult GetComicHtml(DateTime publishedDate);
-    }
+
 
     public class DilbertDownloader
     {
