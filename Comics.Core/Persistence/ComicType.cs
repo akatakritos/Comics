@@ -8,5 +8,6 @@ namespace Comics.Core.Persistence
     {
         Unknown = 0,
         Explosm = 1,
+        Dilbert = 2,
     }
 }

@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Downloaders\DilbertDownloaderTests.cs" />
+    <Compile Include="Core\Downloaders\DilbertImporterTests.cs" />
     <Compile Include="Core\Downloaders\DilbertWebClientTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmImporterTests.cs" />
