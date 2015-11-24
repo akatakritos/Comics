@@ -142,6 +142,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Downloaders\DilbertDownloaderTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmImporterTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmWebClientTests.cs" />
