@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comics.Core", "Comics.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comics.Tests", "Comics.Tests\Comics.Tests.csproj", "{BCC020E6-C879-4F4E-9E18-6B4D144F3A65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comics.JobRunner", "Comics.JobRunner\Comics.JobRunner.csproj", "{AFA9243D-72BF-42BF-A004-D45AF848DE44}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{BCC020E6-C879-4F4E-9E18-6B4D144F3A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCC020E6-C879-4F4E-9E18-6B4D144F3A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCC020E6-C879-4F4E-9E18-6B4D144F3A65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFA9243D-72BF-42BF-A004-D45AF848DE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFA9243D-72BF-42BF-A004-D45AF848DE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFA9243D-72BF-42BF-A004-D45AF848DE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFA9243D-72BF-42BF-A004-D45AF848DE44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
