@@ -6,11 +6,8 @@ using System.Text;
 
 using AutoMoq;
 
-using Comics.Core.Downloaders;
 using Comics.Core.Persistence;
 using Comics.Web.Controllers;
-
-using Moq;
 
 using NFluent;
 
@@ -20,20 +17,6 @@ namespace Comics.Tests.Web.Controllers
 {
     public class ExplosmControllerTests
     {
-        [Fact]
-        public void ItAlwaysChecksForNewComics()
-        {
-            var mocker = new AutoMoqer();
-            mocker.GetMock<IComicsRepository>()
-                .Setup(m => m.GetLatestComics(ComicType.Explosm, 10))
-                .Returns(Enumerable.Empty<Comic>().ToList());
-
-            mocker.Create<ExplosmController>().Feed();
-
-            mocker.GetMock<IExplosmImporter>()
-                .Verify(m => m.ImportNewComics(It.IsAny<int>()), Times.Once);
-        }
-
         [Fact]
         public void ItSendsBackAnRssFeed()
         {

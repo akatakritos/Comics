@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
-using Comics.Core.Downloaders;
 using Comics.Core.Persistence;
 using Comics.Core.Presentation;
 
@@ -14,19 +13,15 @@ namespace Comics.Web.Controllers
     public class ExplosmController : Controller
     {
         private readonly IComicsRepository _comicsRepository;
-        private readonly IExplosmImporter _importer;
 
-        public ExplosmController(IComicsRepository comicsRepository, IExplosmImporter importer)
+        public ExplosmController(IComicsRepository comicsRepository)
         {
             _comicsRepository = comicsRepository;
-            _importer = importer;
         }
 
         // GET: Explosm
         public FileStreamResult Feed()
         {
-            _importer.ImportNewComics();
-
             var comics = _comicsRepository.GetLatestComics(ComicType.Explosm);
 
             var feed = new ComicFeed("Cyanide & Happiness Comics", new Uri("http://example.com"));

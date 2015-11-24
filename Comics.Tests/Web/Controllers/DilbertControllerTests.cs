@@ -6,7 +6,6 @@ using System.Text;
 
 using AutoMoq;
 
-using Comics.Core.Downloaders;
 using Comics.Core.Persistence;
 using Comics.Web.Controllers;
 
@@ -20,20 +19,6 @@ namespace Comics.Tests.Web.Controllers
 {
     public class DilbertControllerTests
     {
-        [Fact]
-        public void ItAlwaysChecksForNewComics()
-        {
-            var mocker = new AutoMoqer();
-            mocker.GetMock<IComicsRepository>()
-                .Setup(m => m.GetLatestComics(ComicType.Dilbert, 10))
-                .Returns(Enumerable.Empty<Comic>().ToList());
-
-            mocker.Create<DilbertController>().Feed();
-
-            mocker.GetMock<IDilbertImporter>()
-                .Verify(m => m.ImportNewComics(null), Times.Once);
-        }
-
         [Fact]
         public void ItSendsBackAnRssFeed()
         {

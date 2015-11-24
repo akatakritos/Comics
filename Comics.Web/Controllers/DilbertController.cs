@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
-using Comics.Core.Downloaders;
 using Comics.Core.Persistence;
 using Comics.Core.Presentation;
 
@@ -13,19 +12,15 @@ namespace Comics.Web.Controllers
 {
     public class DilbertController : Controller
     {
-        private readonly IDilbertImporter _importer;
         private readonly IComicsRepository _repository;
 
-        public DilbertController(IDilbertImporter importer, IComicsRepository repository)
+        public DilbertController(IComicsRepository repository)
         {
-            _importer = importer;
             _repository = repository;
         }
 
         public FileStreamResult Feed()
         {
-            _importer.ImportNewComics();
-
             var comics = _repository.GetLatestComics(ComicType.Dilbert);
 
             var feed = new ComicFeed("Dilbert Comics", new Uri("http://example.com"));
