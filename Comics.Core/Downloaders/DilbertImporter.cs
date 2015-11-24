@@ -7,7 +7,12 @@ using Comics.Core.Persistence;
 
 namespace Comics.Core.Downloaders
 {
-    public class DilbertImporter
+    public interface IDilbertImporter
+    {
+        void ImportNewComics(DateTime? defaultStart = null);
+    }
+
+    public class DilbertImporter : IDilbertImporter
     {
         private readonly IComicsRepository _repository;
         private readonly IDilbertWebClient _client;

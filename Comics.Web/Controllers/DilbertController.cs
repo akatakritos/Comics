@@ -11,25 +11,24 @@ using Comics.Core.Presentation;
 
 namespace Comics.Web.Controllers
 {
-    public class ExplosmController : Controller
+    public class DilbertController : Controller
     {
-        private readonly IComicsRepository _comicsRepository;
-        private readonly IExplosmImporter _importer;
+        private readonly IDilbertImporter _importer;
+        private readonly IComicsRepository _repository;
 
-        public ExplosmController(IComicsRepository comicsRepository, IExplosmImporter importer)
+        public DilbertController(IDilbertImporter importer, IComicsRepository repository)
         {
-            _comicsRepository = comicsRepository;
             _importer = importer;
+            _repository = repository;
         }
 
-        // GET: Explosm
         public FileStreamResult Feed()
         {
             _importer.ImportNewComics();
 
-            var comics = _comicsRepository.GetLatestComics(ComicType.Dilbert);
+            var comics = _repository.GetLatestComics(ComicType.Explosm);
 
-            var feed = new ComicFeed("Cyanide & Happiness Comics", new Uri("http://example.com"));
+            var feed = new ComicFeed("Dilbert Comics", new Uri("http://example.com"));
             var xml = feed.Render(comics);
             return new FileStreamResult(new MemoryStream(Encoding.UTF8.GetBytes(xml)), "text/xml");
         }

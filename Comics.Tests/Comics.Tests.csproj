@@ -156,6 +156,7 @@
     <Compile Include="Core\Presentation\ComicFeedTests.cs" />
     <Compile Include="Fixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\Controllers\DilbertControllerTests.cs" />
     <Compile Include="Web\Controllers\ExplosmControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
