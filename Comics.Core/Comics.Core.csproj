@@ -63,6 +63,7 @@
     <Compile Include="Downloaders\ExplosmImporter.cs" />
     <Compile Include="Downloaders\ExplosmWebClient.cs" />
     <Compile Include="Parsers\ComicParseResult.cs" />
+    <Compile Include="Parsers\DilbertParser.cs" />
     <Compile Include="Parsers\ExplosmParser.cs" />
     <Compile Include="Persistence\Comic.cs" />
     <Compile Include="Persistence\ComicsContext.cs" />

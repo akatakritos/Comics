@@ -145,6 +145,7 @@
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmImporterTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmWebClientTests.cs" />
+    <Compile Include="Core\Parsers\DilbertParserTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParsePermalinkTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParseTests.cs" />
     <Compile Include="Core\Persistence\ComicsRepositoryTests.cs" />
@@ -169,6 +170,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fixtures\dilbert-2015-11-23.txt" />
     <Content Include="Fixtures\explosm-4124.txt" />
     <Content Include="Fixtures\explosm-4125.txt" />
     <Content Include="Fixtures\explosm-latest.txt" />
