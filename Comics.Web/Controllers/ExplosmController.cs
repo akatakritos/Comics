@@ -27,7 +27,7 @@ namespace Comics.Web.Controllers
         {
             _importer.ImportNewComics();
 
-            var comics = _comicsRepository.GetLatestComics(ComicType.Dilbert);
+            var comics = _comicsRepository.GetLatestComics(ComicType.Explosm);
 
             var feed = new ComicFeed("Cyanide & Happiness Comics", new Uri("http://example.com"));
             var xml = feed.Render(comics);

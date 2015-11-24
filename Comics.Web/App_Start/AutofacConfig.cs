@@ -47,6 +47,8 @@ namespace Comics.Web
             builder.RegisterType<ComicsRepository>().As<IComicsRepository>();
             builder.RegisterType<ExplosmImporter>().As<IExplosmImporter>();
             builder.RegisterType<ExplosmWebClient>().As<IExplosmWebClient>();
+            builder.RegisterType<DilbertWebClient>().As<IDilbertWebClient>();
+            builder.RegisterType<DilbertImporter>().As<IDilbertImporter>();
             builder.RegisterType<ComicsContext>().AsSelf();
         }
     }

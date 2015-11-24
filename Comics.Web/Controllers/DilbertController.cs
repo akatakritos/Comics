@@ -26,7 +26,7 @@ namespace Comics.Web.Controllers
         {
             _importer.ImportNewComics();
 
-            var comics = _repository.GetLatestComics(ComicType.Explosm);
+            var comics = _repository.GetLatestComics(ComicType.Dilbert);
 
             var feed = new ComicFeed("Dilbert Comics", new Uri("http://example.com"));
             var xml = feed.Render(comics);

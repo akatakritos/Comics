@@ -26,7 +26,7 @@ namespace Comics.Tests.Web.Controllers
         {
             var mocker = new AutoMoqer();
             mocker.GetMock<IComicsRepository>()
-                .Setup(m => m.GetLatestComics(ComicType.Explosm, 10))
+                .Setup(m => m.GetLatestComics(ComicType.Dilbert, 10))
                 .Returns(Enumerable.Empty<Comic>().ToList());
 
             mocker.Create<DilbertController>().Feed();
@@ -40,7 +40,7 @@ namespace Comics.Tests.Web.Controllers
         {
             var mocker = new AutoMoqer();
             mocker.GetMock<IComicsRepository>()
-                .Setup(m => m.GetLatestComics(ComicType.Explosm, 10))
+                .Setup(m => m.GetLatestComics(ComicType.Dilbert, 10))
                 .Returns(new[]
                 {
                     new Comic()
@@ -62,7 +62,21 @@ namespace Comics.Tests.Web.Controllers
 
             Check.That(result.ContentType).IsEqualTo("text/xml");
             Check.That(xml).Contains("http://example.com/image.png");
-
         }
+
+        [Fact]
+        public void ItSearchesForDilbertComics()
+        {
+            var mocker = new AutoMoqer();
+            mocker.GetMock<IComicsRepository>()
+                .Setup(m => m.GetLatestComics(ComicType.Dilbert, It.IsAny<int>()))
+                .Returns(Enumerable.Empty<Comic>().ToList())
+                .Verifiable();
+
+            mocker.Create<DilbertController>().Feed();
+
+            mocker.GetMock<IComicsRepository>().Verify();
+        }
+
     }
 }
