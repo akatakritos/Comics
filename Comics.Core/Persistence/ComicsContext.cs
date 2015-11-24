@@ -16,5 +16,10 @@ namespace Comics.Core.Persistence
         }
 
         public DbSet<Comic> Comics { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("comics");
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
