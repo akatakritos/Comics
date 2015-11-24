@@ -7,8 +7,9 @@ using Comics.Core.Persistence;
 
 namespace Comics.JobRunner
 {
-    class Program
+    static class Program
     {
+        // ReSharper disable once UnusedParameter.Local
         static void Main(string[] args)
         {
             using (var context = new ComicsContext())

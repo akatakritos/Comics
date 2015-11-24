@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 
 using Autofac;
@@ -11,7 +10,7 @@ using Autofac.Integration.Mvc;
 using Comics.Core.Downloaders;
 using Comics.Core.Persistence;
 
-namespace Comics.Web.App_Start
+namespace Comics.Web
 {
     public static class AutofacConfig
     {
