@@ -43,6 +43,15 @@ namespace Comics.Tests.Core.Downloaders
             Check.That(result.Permalink).IsEqualTo(new Uri("http://dilbert.com/strip/2015-11-23"));
         }
 
+        [Fact]
+        public void HandlesRedirectAsNotFound()
+        {
+            var client = new DilbertWebClient();
+
+            Check.ThatCode(() => client.GetComicHtml(new DateTime(2020, 1, 1)))
+                .Throws<ComicNotFoundException>();
+        }
+
 
     }
 }

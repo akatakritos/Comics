@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 
 namespace Comics.Core.Downloaders
@@ -14,10 +15,15 @@ namespace Comics.Core.Downloaders
     {
         public ComicDownloadResult GetComicHtml(DateTime publishedDate)
         {
-            var client = new HttpClient();
             var permalink = new Uri($"http://dilbert.com/strip/{publishedDate:yyyy-MM-dd}");
+
+            using (var handler = new HttpClientHandler() { AllowAutoRedirect = false })
+            using (var client = new HttpClient(handler))
             using (var response = client.GetAsync(permalink).Result)
             {
+                if (response.StatusCode != HttpStatusCode.OK)
+                    throw new ComicNotFoundException(permalink);
+
                 var content = response.Content.ReadAsStringAsync().Result;
 
                 return new ComicDownloadResult(content, ToComicNumber(publishedDate), permalink);

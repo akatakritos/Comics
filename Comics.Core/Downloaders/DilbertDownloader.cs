@@ -24,7 +24,18 @@ namespace Comics.Core.Downloaders
         {
             for (var current = lastComicDate.AddDays(1).Date; current <= Today; current = current.AddDays(1).Date)
             {
-                yield return _client.GetComicHtml(current);
+                ComicDownloadResult result;
+                try
+                {
+                    result = _client.GetComicHtml(current);
+                }
+                catch (ComicNotFoundException)
+                {
+                    yield break;
+                }
+
+                yield return result;
+
             }
         }
     }
