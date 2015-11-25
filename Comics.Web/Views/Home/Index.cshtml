@@ -1,0 +1,36 @@
+﻿@using Comics.Core.Persistence
+@model Comics.Web.Models.HomePageViewModel
+@{
+    ViewBag.Title = "Todays Comics";
+}
+
+@helper ComicBlock(Comic comic, string comicName)
+{
+    <div class="well">
+
+        <h3>Most Recent @comicName Comic <small>@comic.PublishedDate.ToShortDateString()</small></h3>
+
+        <div>
+            <a href="@comic.Permalink">
+                <img class="img-responsive" src="@comic.ImageSrc"/>
+            </a>
+        </div>
+
+        <div style="padding-top:10px">
+            @Html.ActionLink("Subscribe", "Feed", comic.ComicType.ToString(), null, new {@class="btn btn-primary"})
+        </div>
+    </div>
+}
+
+<h1>Comic RSS</h1>
+
+@if (Model.TodaysDilbert != null)
+{
+    @ComicBlock(Model.TodaysDilbert, "Dilbert")
+}
+
+@if (Model.TodaysExplosm != null)
+{
+    @ComicBlock(Model.TodaysExplosm, "Cyanice & Happiness")
+}
+
