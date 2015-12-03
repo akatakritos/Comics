@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using Comics.Core.Parsers;
+using Comics.Core.Persistence;
+
 using HtmlAgilityPack;
 
 namespace Comics.Core.Downloaders
 {
-
+    public interface IComicDownloader
+    {
+        IEnumerable<Comic> GetNewComicsSince(Comic lastDownloaded);
+    }
 
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class ExplosmDownloader
+    public class ExplosmDownloader : IComicDownloader
     {
         private readonly IExplosmWebClient _client;
 
@@ -19,16 +25,29 @@ namespace Comics.Core.Downloaders
             _client = client;
         }
 
-        public IEnumerable<ComicDownloadResult> GetNewComics(int lastComic)
+        public const int DefaultStartComic = 4124;
+        public IEnumerable<Comic> GetNewComicsSince(Comic lastDownloaded)
         {
+            var lastComic = lastDownloaded?.ComicNumber ?? DefaultStartComic;
             var result = _client.GetComicHtml(lastComic);
             var next = ParseNextComicNumber(result.Content);
 
             while(next.HasValue)
             {
                 lastComic = next.Value;
+
                 result = _client.GetComicHtml(lastComic);
-                yield return result;
+                var parseResult = ExplosmParser.Parse(result.Content);
+
+                var comic = new Comic()
+                {
+                    ComicType = ComicType.Explosm,
+                    ComicNumber = lastComic,
+                    ImageSrc = parseResult.ImageUri.ToString(),
+                    Permalink = result.Permalink.ToString(),
+                    PublishedDate = parseResult.PublishedDate
+                };
+                yield return comic;
 
                 next = ParseNextComicNumber(result.Content);
             }

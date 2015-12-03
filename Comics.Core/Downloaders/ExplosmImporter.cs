@@ -27,23 +27,11 @@ namespace Comics.Core.Downloaders
         {
             var lastComic = _comicsRepository.GetLastImportedComic(ComicType.Explosm);
 
-            var lastComicNumber = lastComic?.ComicNumber ?? defaultStart;
-
             var downloader = new ExplosmDownloader(_explosmClient);
-            var results = downloader.GetNewComics(lastComicNumber);
+            var results = downloader.GetNewComicsSince(lastComic);
 
-            foreach (var result in results)
+            foreach (var comic in results)
             {
-                var parseResult = ExplosmParser.Parse(result.Content);
-                var comic = new Comic()
-                {
-                    ComicType = ComicType.Explosm,
-                    ComicNumber = result.ComicNumber,
-                    ImageSrc = parseResult.ImageUri.ToString(),
-                    PublishedDate = parseResult.PublishedDate,
-                    Permalink = result.Permalink.ToString(),
-                };
-
                 _comicsRepository.InsertComic(comic);
             }
         }
