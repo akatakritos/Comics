@@ -4,11 +4,11 @@
     ViewBag.Title = "Todays Comics";
 }
 
-@helper ComicBlock(Comic comic, string comicName)
+@helper ComicBlock(Comic comic)
 {
     <div class="well">
 
-        <h3>Most Recent @comicName Comic <small>@comic.PublishedDate.ToShortDateString()</small></h3>
+        <h3>Most Recent @comic.ComicType Comic <small>@comic.PublishedDate.ToShortDateString()</small></h3>
 
         <div>
             <a href="@comic.Permalink">
@@ -24,13 +24,7 @@
 
 <h1>Comic RSS</h1>
 
-@if (Model.TodaysDilbert != null)
+@foreach (var comic in Model.LatestComics)
 {
-    @ComicBlock(Model.TodaysDilbert, "Dilbert")
+    @ComicBlock(comic)
 }
-
-@if (Model.TodaysExplosm != null)
-{
-    @ComicBlock(Model.TodaysExplosm, "Cyanice & Happiness")
-}
-
