@@ -206,10 +206,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Dilbert\" />
-    <Folder Include="Views\Explosm\" />
-    <Folder Include="Views\Feed\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
