@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Comics.Core.Parsers;
+using Comics.Core.Persistence;
+
 namespace Comics.Core.Downloaders
 {
 
 
-    public class DilbertDownloader
+    public class DilbertDownloader : IComicDownloader
     {
         private readonly IDilbertWebClient _client;
 
@@ -20,8 +23,11 @@ namespace Comics.Core.Downloaders
         /// </summary>
         public DateTime Today { get; set; } = DateTime.Today;
 
-        public IEnumerable<ComicDownloadResult> GetNewComics(DateTime lastComicDate)
+        public readonly DateTime DefaultStartDate = new DateTime(2015, 11, 20);
+
+        public IEnumerable<Comic> GetNewComicsSince(Comic lastDownloaded)
         {
+            var lastComicDate = lastDownloaded?.PublishedDate ?? DefaultStartDate;
             for (var current = lastComicDate.AddDays(1).Date; current <= Today; current = current.AddDays(1).Date)
             {
                 ComicDownloadResult result;
@@ -34,7 +40,17 @@ namespace Comics.Core.Downloaders
                     yield break;
                 }
 
-                yield return result;
+                var parseResult = DilbertParser.Parse(result.Content);
+                var comic = new Comic()
+                {
+                    ComicType = ComicType.Dilbert,
+                    PublishedDate = current,
+                    ComicNumber = result.ComicNumber,
+                    ImageSrc = parseResult.ImageUri.ToString(),
+                    Permalink = result.Permalink.ToString(),
+                };
+
+                yield return comic;
 
             }
         }
