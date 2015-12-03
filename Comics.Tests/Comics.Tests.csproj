@@ -150,6 +150,7 @@
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmImporterTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmWebClientTests.cs" />
+    <Compile Include="Core\Downloaders\ImportProcessTests.cs" />
     <Compile Include="Core\Parsers\DilbertParserTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParsePermalinkTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParseTests.cs" />
