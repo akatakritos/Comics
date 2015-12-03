@@ -63,7 +63,10 @@
     <Compile Include="Downloaders\DilbertWebClient.cs" />
     <Compile Include="Downloaders\ExplosmDownloader.cs" />
     <Compile Include="Downloaders\ExplosmWebClient.cs" />
-    <Compile Include="Downloaders\ImportProcess.cs" />
+    <Compile Include="Downloaders\IComicDownloader.cs" />
+    <Compile Include="Import\ComicConfig.cs" />
+    <Compile Include="Import\ComicConfigRegistry.cs" />
+    <Compile Include="Import\ImportProcess.cs" />
     <Compile Include="Parsers\ComicParseResult.cs" />
     <Compile Include="Parsers\DilbertParser.cs" />
     <Compile Include="Parsers\ExplosmParser.cs" />
@@ -78,6 +81,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,6 +8,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 
 using Comics.Core.Downloaders;
+using Comics.Core.Import;
 using Comics.Core.Persistence;
 
 namespace Comics.Web

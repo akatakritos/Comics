@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 using AutoMoq;
 
-using Comics.Core.Downloaders;
+using Comics.Core.Import;
 using Comics.Core.Persistence;
 using Comics.Web.Controllers;
 using Comics.Web.Models;

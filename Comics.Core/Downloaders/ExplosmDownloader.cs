@@ -10,11 +10,6 @@ using HtmlAgilityPack;
 
 namespace Comics.Core.Downloaders
 {
-    public interface IComicDownloader
-    {
-        IEnumerable<Comic> GetNewComicsSince(Comic lastDownloaded);
-    }
-
     // ReSharper disable once ClassNeverInstantiated.Global
     public class ExplosmDownloader : IComicDownloader
     {

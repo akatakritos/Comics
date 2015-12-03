@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using AutoMoq;
+﻿using AutoMoq;
 
 using Comics.Core.Downloaders;
+using Comics.Core.Import;
 using Comics.Core.Persistence;
 
 using Moq;
 
 using Xunit;
 
-namespace Comics.Tests.Core.Downloaders
+namespace Comics.Tests.Core.Import
 {
     public class ImportProcessTests
     {

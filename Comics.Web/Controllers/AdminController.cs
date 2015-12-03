@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 
-using Comics.Core.Downloaders;
+using Comics.Core.Import;
 
 namespace Comics.Web.Controllers
 {

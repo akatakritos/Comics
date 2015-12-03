@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 using AutoMoq;
 
-using Comics.Core.Downloaders;
+using Comics.Core.Import;
 using Comics.Web.Controllers;
 
 using Moq;

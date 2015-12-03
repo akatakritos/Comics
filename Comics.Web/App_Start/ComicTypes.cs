@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 
 using Comics.Core.Downloaders;
+using Comics.Core.Import;
 using Comics.Core.Persistence;
 
 namespace Comics.Web
