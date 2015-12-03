@@ -53,8 +53,8 @@ namespace Comics.Tests.Web.Controllers
 
              mocker.Create<AdminController>().Refresh(authToken: ConfigurationManager.AppSettings["AdminAuthToken"]);
 
-            mocker.GetMock<IComicImporter>()
-                .Verify(m => m.ImportNewComics(), Times.Once);
+            mocker.GetMock<IImportProcess>()
+                .Verify(m => m.Run(), Times.Once);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Comics.Web.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IComicImporter _comicImporter;
+        private readonly IImportProcess _comicImporter;
 
-        public AdminController(IComicImporter comicImporter)
+        public AdminController(IImportProcess comicImporter)
         {
             if (ConfigurationManager.AppSettings["AdminAuthToken"] == null)
                 throw new InvalidOperationException("AdminAuthToken not set in web.config");
@@ -27,7 +27,7 @@ namespace Comics.Web.Controllers
             if (authToken != ConfigurationManager.AppSettings["AdminAuthToken"])
                 return new HttpUnauthorizedResult();
 
-            _comicImporter.ImportNewComics();
+            _comicImporter.Run();
             return new EmptyResult();
         }
 

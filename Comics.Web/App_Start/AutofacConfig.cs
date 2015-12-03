@@ -51,6 +51,10 @@ namespace Comics.Web
             builder.RegisterType<DilbertImporter>().As<IDilbertImporter>();
             builder.RegisterType<ComicsContext>().AsSelf();
             builder.RegisterType<ComicImporter>().As<IComicImporter>();
+            builder.RegisterInstance(ComicConfigRegistry.Registry).As<ComicConfigRegistry>();
+            builder.RegisterType<ImportProcess>().As<IImportProcess>();
+            builder.RegisterType<DilbertDownloader>().AsSelf();
+            builder.RegisterType<ExplosmDownloader>().AsSelf();
         }
     }
 }

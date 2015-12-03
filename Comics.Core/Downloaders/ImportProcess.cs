@@ -8,6 +8,13 @@ namespace Comics.Core.Downloaders
 {
     public class ComicConfigRegistry
     {
+        public static ComicConfigRegistry Registry { get; }
+
+        static ComicConfigRegistry()
+        {
+            Registry = new ComicConfigRegistry();
+        }
+
         public ComicConfigRegistry()
         {
             _entries = new List<ComicConfig>();
@@ -35,7 +42,12 @@ namespace Comics.Core.Downloaders
         }
     }
 
-    public class ImportProcess
+    public interface IImportProcess
+    {
+        void Run();
+    }
+
+    public class ImportProcess : IImportProcess
     {
         private readonly IComicsRepository _comics;
         private readonly ComicConfigRegistry _registry;
