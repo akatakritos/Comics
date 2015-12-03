@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Mime;
 using System.Web.Mvc;
 
 using Comics.Core.Import;
@@ -28,7 +29,7 @@ namespace Comics.Web.Controllers
                 return new HttpUnauthorizedResult();
 
             _comicImporter.Run();
-            return new EmptyResult();
+            return Content($"Imported {_comicImporter.ImportedComics.Count} comics", "text/plain");
         }
 
         public ActionResult ThrowException(string authToken)
