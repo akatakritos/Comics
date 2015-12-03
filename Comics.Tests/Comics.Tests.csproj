@@ -159,6 +159,7 @@
     <Compile Include="Web\Controllers\AdminControllerTests.cs" />
     <Compile Include="Web\Controllers\DilbertControllerTests.cs" />
     <Compile Include="Web\Controllers\ExplosmControllerTests.cs" />
+    <Compile Include="Web\Controllers\FeedControllerTests.cs" />
     <Compile Include="Web\Controllers\HomeControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -182,6 +182,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DilbertController.cs" />
     <Compile Include="Controllers\ExplosmController.cs" />
+    <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,6 +211,7 @@
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Dilbert\" />
     <Folder Include="Views\Explosm\" />
+    <Folder Include="Views\Feed\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
