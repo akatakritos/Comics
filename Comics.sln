@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comics.Web", "Comics.Web\Comics.Web.csproj", "{7A81A024-8DD7-48EE-813A-C29FA175A952}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comics.Core", "Comics.Core\Comics.Core.csproj", "{65F9F35F-DF88-4C44-B0A8-D2730FE3F370}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comics.Tests", "Comics.Tests\Comics.Tests.csproj", "{BCC020E6-C879-4F4E-9E18-6B4D144F3A65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63AB846E-7DEF-4F79-9211-E6CDC64A779C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
