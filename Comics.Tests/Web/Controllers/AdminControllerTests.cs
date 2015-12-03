@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoMoq;
 
 using Comics.Core.Import;
+using Comics.Core.Persistence;
 using Comics.Web.Controllers;
 
 using Moq;
@@ -37,21 +38,27 @@ namespace Comics.Tests.Web.Controllers
         }
 
         [Fact]
-        public void WhenAuthorizedReturnsEmptyResult()
+        public void WhenAuthorizedReturnsContentResult()
         {
             var mocker = new AutoMoqer();
+            mocker.GetMock<IImportProcess>()
+                .Setup(m => m.ImportedComics)
+                .Returns(new Comic[] {});
 
             var result = mocker.Create<AdminController>().Refresh(authToken: ConfigurationManager.AppSettings["AdminAuthToken"]);
 
-            Check.That(result).IsInstanceOf<EmptyResult>();
+            Check.That(result).IsInstanceOf<ContentResult>();
         }
 
         [Fact]
         public void ItRunsTheImports()
         {
             var mocker = new AutoMoqer();
+            mocker.GetMock<IImportProcess>()
+                .Setup(m => m.ImportedComics)
+                .Returns(new Comic[] {});
 
-             mocker.Create<AdminController>().Refresh(authToken: ConfigurationManager.AppSettings["AdminAuthToken"]);
+            mocker.Create<AdminController>().Refresh(authToken: ConfigurationManager.AppSettings["AdminAuthToken"]);
 
             mocker.GetMock<IImportProcess>()
                 .Verify(m => m.Run(), Times.Once);
