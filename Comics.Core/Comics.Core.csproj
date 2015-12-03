@@ -59,12 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloaders\ComicDownloadResult.cs" />
-    <Compile Include="Downloaders\ComicImporter.cs" />
     <Compile Include="Downloaders\DilbertDownloader.cs" />
-    <Compile Include="Downloaders\DilbertImporter.cs" />
     <Compile Include="Downloaders\DilbertWebClient.cs" />
     <Compile Include="Downloaders\ExplosmDownloader.cs" />
-    <Compile Include="Downloaders\ExplosmImporter.cs" />
     <Compile Include="Downloaders\ExplosmWebClient.cs" />
     <Compile Include="Downloaders\ImportProcess.cs" />
     <Compile Include="Parsers\ComicParseResult.cs" />

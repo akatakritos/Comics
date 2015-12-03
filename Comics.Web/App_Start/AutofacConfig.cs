@@ -45,12 +45,9 @@ namespace Comics.Web
         private static void RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<ComicsRepository>().As<IComicsRepository>();
-            builder.RegisterType<ExplosmImporter>().As<IExplosmImporter>();
             builder.RegisterType<ExplosmWebClient>().As<IExplosmWebClient>();
             builder.RegisterType<DilbertWebClient>().As<IDilbertWebClient>();
-            builder.RegisterType<DilbertImporter>().As<IDilbertImporter>();
             builder.RegisterType<ComicsContext>().AsSelf();
-            builder.RegisterType<ComicImporter>().As<IComicImporter>();
             builder.RegisterInstance(ComicConfigRegistry.Registry).As<ComicConfigRegistry>();
             builder.RegisterType<ImportProcess>().As<IImportProcess>();
             builder.RegisterType<DilbertDownloader>().AsSelf();

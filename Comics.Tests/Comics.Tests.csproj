@@ -143,12 +143,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Downloaders\ComicImporterTests.cs" />
     <Compile Include="Core\Downloaders\DilbertDownloaderTests.cs" />
-    <Compile Include="Core\Downloaders\DilbertImporterTests.cs" />
     <Compile Include="Core\Downloaders\DilbertWebClientTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
-    <Compile Include="Core\Downloaders\ExplosmImporterTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmWebClientTests.cs" />
     <Compile Include="Core\Downloaders\ImportProcessTests.cs" />
     <Compile Include="Core\Parsers\DilbertParserTests.cs" />
