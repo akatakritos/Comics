@@ -11,5 +11,7 @@ namespace Comics.Core.Persistence
         [Display(Name="Cyanide & Happiness")]
         Explosm = 1,
         Dilbert = 2,
+        [Display(Name="Pearls Before Swine")]
+        Pearls = 3,
     }
 }
