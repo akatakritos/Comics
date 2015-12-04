@@ -7,11 +7,6 @@ using Comics.Core.Persistence;
 
 namespace Comics.Core.Downloaders
 {
-    public interface IPearlsWebClient
-    {
-        ComicDownloadResult GetComicHtml(DateTime publishedDate);
-    }
-
     public class PearlsDownloader : IComicDownloader
     {
         private readonly IPearlsWebClient _client;
