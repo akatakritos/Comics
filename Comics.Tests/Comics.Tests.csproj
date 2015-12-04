@@ -147,6 +147,7 @@
     <Compile Include="Core\Downloaders\DilbertWebClientTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmDownloaderTests.cs" />
     <Compile Include="Core\Downloaders\ExplosmWebClientTests.cs" />
+    <Compile Include="Core\Extensions\EnumExtensionsTests.cs" />
     <Compile Include="Core\Import\ImportProcessTests.cs" />
     <Compile Include="Core\Parsers\DilbertParserTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParsePermalinkTests.cs" />

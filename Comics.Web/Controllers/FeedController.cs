@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
+using Comics.Core.Extensions;
 using Comics.Core.Persistence;
 using Comics.Core.Presentation;
 
@@ -24,7 +25,7 @@ namespace Comics.Web.Controllers
         {
             var comics = _comics.GetLatestComics(type);
 
-            var feed = new ComicFeed($"{type} Comics", new Uri("http://example.com"));
+            var feed = new ComicFeed($"{type.ToDisplayName()} Comics", new Uri("http://example.com"));
             var xml = feed.Render(comics);
             return new FileStreamResult(new MemoryStream(Encoding.UTF8.GetBytes(xml)), "text/xml");
         }

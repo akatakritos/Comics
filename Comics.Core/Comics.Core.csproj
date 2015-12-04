@@ -64,6 +64,7 @@
     <Compile Include="Downloaders\ExplosmDownloader.cs" />
     <Compile Include="Downloaders\ExplosmWebClient.cs" />
     <Compile Include="Downloaders\IComicDownloader.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Import\ComicConfig.cs" />
     <Compile Include="Import\ComicConfigRegistry.cs" />
     <Compile Include="Import\ImportProcess.cs" />
