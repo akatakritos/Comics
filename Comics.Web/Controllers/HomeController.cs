@@ -25,6 +25,7 @@ namespace Comics.Web.Controllers
         {
             var latestComics = _registry.Entries
                 .Select(e => _comics.GetLastImportedComic(e.ComicType))
+                .Where(c => c != null)
                 .ToArray();
 
             var model = new HomePageViewModel { LatestComics = latestComics };
