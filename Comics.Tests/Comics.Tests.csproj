@@ -152,6 +152,7 @@
     <Compile Include="Core\Parsers\DilbertParserTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParsePermalinkTests.cs" />
     <Compile Include="Core\Parsers\ExplosmParser.ParseTests.cs" />
+    <Compile Include="Core\Parsers\PearlsParserTests.cs" />
     <Compile Include="Core\Persistence\ComicsRepositoryTests.cs" />
     <Compile Include="Core\Persistence\IntegrationDatabase.cs" />
     <Compile Include="Core\Presentation\ComicFeedTests.cs" />
@@ -180,6 +181,7 @@
     <Content Include="Fixtures\explosm-4124.txt" />
     <Content Include="Fixtures\explosm-4125.txt" />
     <Content Include="Fixtures\explosm-latest.txt" />
+    <Content Include="Fixtures\pearls-2015-12-04.txt" />
     <Content Include="License.txt" />
   </ItemGroup>
   <ItemGroup />

@@ -71,6 +71,7 @@
     <Compile Include="Parsers\ComicParseResult.cs" />
     <Compile Include="Parsers\DilbertParser.cs" />
     <Compile Include="Parsers\ExplosmParser.cs" />
+    <Compile Include="Parsers\PearlsParser.cs" />
     <Compile Include="Persistence\Comic.cs" />
     <Compile Include="Persistence\ComicsContext.cs" />
     <Compile Include="Persistence\ComicsRepository.cs" />
