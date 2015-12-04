@@ -53,6 +53,9 @@ namespace Comics.Web
             builder.RegisterType<ImportProcess>().As<IImportProcess>();
             builder.RegisterType<DilbertDownloader>().AsSelf();
             builder.RegisterType<ExplosmDownloader>().AsSelf();
+
+            builder.RegisterType<PearlsWebClient>().As<IPearlsWebClient>();
+            builder.RegisterType<PearlsDownloader>().AsSelf();
         }
     }
 }

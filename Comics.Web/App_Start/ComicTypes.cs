@@ -18,6 +18,8 @@ namespace Comics.Web
                 new ComicConfig(ComicType.Dilbert, context.GetService<DilbertDownloader>()));
             ComicConfigRegistry.Registry.Add(
                 new ComicConfig(ComicType.Explosm, context.GetService<ExplosmDownloader>()));
+            ComicConfigRegistry.Registry.Add(
+                new ComicConfig(ComicType.Pearls, context.GetService<PearlsDownloader>()));
         }
     }
 }
