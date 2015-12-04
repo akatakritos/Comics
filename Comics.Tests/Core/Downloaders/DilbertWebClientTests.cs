@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Comics.Core.Downloaders;
+using Comics.Core.Parsers;
 
 using NFluent;
 
@@ -52,6 +53,14 @@ namespace Comics.Tests.Core.Downloaders
                 .Throws<ComicNotFoundException>();
         }
 
+        [Fact]
+        public void DownloadedHtmlIsParseable()
+        {
+            var client = new DilbertWebClient();
+            var result = client.GetComicHtml(new DateTime(2015, 11, 23));
+            var parseResult = DilbertParser.Parse(result.Content);
+            Check.That(parseResult.ImageUri).IsNotNull();
+        }
 
     }
 }

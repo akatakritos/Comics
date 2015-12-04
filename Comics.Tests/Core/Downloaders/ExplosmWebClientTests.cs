@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Comics.Core.Downloaders;
+using Comics.Core.Parsers;
 
 using NFluent;
 
@@ -29,6 +30,16 @@ namespace Comics.Tests.Core.Downloaders
             var client = new ExplosmWebClient();
 
             Check.ThatCode(() => client.GetComicHtml(999999)).Throws<ComicNotFoundException>();
+        }
+
+        [Fact]
+        public void DownloadedHtmlIsParseable()
+        {
+            var client = new ExplosmWebClient();
+            var result = client.GetComicHtml(4125);
+            var parseResult = ExplosmParser.Parse(result.Content);
+
+            Check.That(parseResult.ImageUri).IsNotNull();
         }
 
     }
