@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using Comics.Core.Parsers;
@@ -31,8 +32,9 @@ namespace Comics.Core.Downloaders
                 {
                     result = _client.GetComicHtml(current);
                 }
-                catch (ComicNotFoundException)
+                catch (ComicNotFoundException e)
                 {
+                    Trace.WriteLine(e.Message, nameof(PearlsDownloader));
                     yield break;
                 }
 

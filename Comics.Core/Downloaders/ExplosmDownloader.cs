@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -29,6 +30,7 @@ namespace Comics.Core.Downloaders
 
             while(next.HasValue)
             {
+                Trace.WriteLine($"Downloading next comic", nameof(ExplosmDownloader));
                 lastComic = next.Value;
 
                 result = _client.GetComicHtml(lastComic);
@@ -42,10 +44,13 @@ namespace Comics.Core.Downloaders
                     Permalink = result.Permalink.ToString(),
                     PublishedDate = parseResult.PublishedDate
                 };
+
                 yield return comic;
 
                 next = ParseNextComicNumber(result.Content);
             }
+
+            Trace.WriteLine("Finished downloading new comics", nameof(ExplosmDownloader));
         }
 
         private static int? ParseNextComicNumber(string html)

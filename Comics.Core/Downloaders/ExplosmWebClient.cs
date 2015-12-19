@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -27,10 +28,15 @@ namespace Comics.Core.Downloaders
             var client = new HttpClient();
 
             var permalink = new Uri($"http://explosm.net/comics/{comicNumber}/");
+
+            Trace.WriteLine($"Downloading {permalink}", nameof(ExplosmWebClient));
             using (var response = client.GetAsync(permalink).Result)
             {
                 if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    Trace.WriteLine($"Received 404", nameof(ExplosmWebClient));
                     throw new ComicNotFoundException(permalink);
+                }
 
                 var content = response.Content.ReadAsStringAsync().Result;
 

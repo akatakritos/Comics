@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using Comics.Core.Parsers;
@@ -7,8 +8,6 @@ using Comics.Core.Persistence;
 
 namespace Comics.Core.Downloaders
 {
-
-
     public class DilbertDownloader : IComicDownloader
     {
         private readonly IDilbertWebClient _client;
@@ -35,8 +34,9 @@ namespace Comics.Core.Downloaders
                 {
                     result = _client.GetComicHtml(current);
                 }
-                catch (ComicNotFoundException)
+                catch (ComicNotFoundException e)
                 {
+                    Trace.WriteLine(e.Message, nameof(DilbertDownloader));
                     yield break;
                 }
 
