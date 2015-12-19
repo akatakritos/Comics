@@ -27,6 +27,8 @@ namespace Comics.Core.Downloaders
         public IEnumerable<Comic> GetNewComicsSince(Comic lastDownloaded)
         {
             var lastComicDate = lastDownloaded?.PublishedDate ?? DefaultStartDate;
+            Trace.WriteLine($"Downloading new comics since {lastComicDate}", nameof(DilbertDownloader));
+
             for (var current = lastComicDate.AddDays(1).Date; current <= Today; current = current.AddDays(1).Date)
             {
                 ComicDownloadResult result;
@@ -51,6 +53,8 @@ namespace Comics.Core.Downloaders
                 };
 
                 yield return comic;
+
+                Trace.WriteLine("Finished downloading comics", nameof(DilbertDownloader));
 
             }
         }

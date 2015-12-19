@@ -25,12 +25,15 @@ namespace Comics.Core.Downloaders
         public IEnumerable<Comic> GetNewComicsSince(Comic lastDownloaded)
         {
             var lastComic = lastDownloaded?.ComicNumber ?? DefaultStartComic;
+            Trace.WriteLine($"Downloading new comics since {lastComic}", nameof(ExplosmDownloader));
+            Trace.WriteLine("Getting last comic to check for a next link", nameof(ExplosmDownloader));
+
             var result = _client.GetComicHtml(lastComic);
             var next = ParseNextComicNumber(result.Content);
 
             while(next.HasValue)
             {
-                Trace.WriteLine($"Downloading next comic", nameof(ExplosmDownloader));
+                Trace.WriteLine($"Found next link, downloading next comic {next}", nameof(ExplosmDownloader));
                 lastComic = next.Value;
 
                 result = _client.GetComicHtml(lastComic);
