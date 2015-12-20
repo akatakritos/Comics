@@ -29,7 +29,11 @@ namespace Comics.Core.Downloaders
             var lastComicDate = lastDownloaded?.PublishedDate ?? DefaultStartDate;
             Trace.WriteLine($"Downloading new comics since {lastComicDate}", nameof(DilbertDownloader));
 
-            for (var current = lastComicDate.AddDays(1).Date; current <= Today; current = current.AddDays(1).Date)
+            var start = lastComicDate.AddDays(1).Date;
+            var end = Today;
+            Trace.WriteLine($"Iterating {start} -> {end}.", nameof(DilbertDownloader));
+
+            for (var current = start; current <= end; current = current.AddDays(1).Date)
             {
                 ComicDownloadResult result;
                 try
@@ -53,10 +57,9 @@ namespace Comics.Core.Downloaders
                 };
 
                 yield return comic;
-
-                Trace.WriteLine("Finished downloading comics", nameof(DilbertDownloader));
-
             }
+
+            Trace.WriteLine("Finished downloading comics", nameof(DilbertDownloader));
         }
     }
 }
