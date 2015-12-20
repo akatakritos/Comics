@@ -49,13 +49,14 @@ namespace Comics.Web
             builder.RegisterType<ExplosmWebClient>().As<IExplosmWebClient>();
             builder.RegisterType<DilbertWebClient>().As<IDilbertWebClient>();
             builder.RegisterType<ComicsContext>().AsSelf();
-            builder.RegisterInstance(ComicConfigRegistry.Registry).As<ComicConfigRegistry>();
             builder.RegisterType<ImportProcess>().As<IImportProcess>();
             builder.RegisterType<DilbertDownloader>().AsSelf();
             builder.RegisterType<ExplosmDownloader>().AsSelf();
 
             builder.RegisterType<PearlsWebClient>().As<IPearlsWebClient>();
             builder.RegisterType<PearlsDownloader>().AsSelf();
+
+            builder.Register<ComicConfigRegistry>(ComicTypes.RegisterComics).AsSelf();
         }
     }
 }

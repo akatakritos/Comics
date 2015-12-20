@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+
+using Autofac;
 
 using Comics.Core.Downloaders;
 using Comics.Core.Import;
@@ -11,15 +12,23 @@ namespace Comics.Web
 {
     public static class ComicTypes
     {
-        public static void RegisterComics()
+        /// <summary>
+        /// Autofac will call this each time a class depends on ComicConfigRegistry
+        /// </summary>
+        /// <param name="componentRegistry"></param>
+        /// <returns></returns>
+        public static ComicConfigRegistry RegisterComics(IComponentContext componentRegistry)
         {
-            var context = DependencyResolver.Current;
-            ComicConfigRegistry.Registry.Add(
-                new ComicConfig(ComicType.Dilbert, context.GetService<DilbertDownloader>()));
-            ComicConfigRegistry.Registry.Add(
-                new ComicConfig(ComicType.Explosm, context.GetService<ExplosmDownloader>()));
-            ComicConfigRegistry.Registry.Add(
-                new ComicConfig(ComicType.Pearls, context.GetService<PearlsDownloader>()));
+            var registry = new ComicConfigRegistry();
+
+            registry.Add(
+                new ComicConfig(ComicType.Dilbert, componentRegistry.Resolve<DilbertDownloader>()));
+            registry.Add(
+                new ComicConfig(ComicType.Explosm, componentRegistry.Resolve<ExplosmDownloader>()));
+            registry.Add(
+                new ComicConfig(ComicType.Pearls, componentRegistry.Resolve<PearlsDownloader>()));
+
+            return registry;
         }
     }
 }

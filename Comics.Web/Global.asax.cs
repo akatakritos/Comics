@@ -16,7 +16,6 @@ namespace Comics.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.RegisterDependencyInjection();
-            ComicTypes.RegisterComics();
         }
     }
 }
