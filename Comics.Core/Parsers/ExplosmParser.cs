@@ -38,17 +38,18 @@ namespace Comics.Core.Parsers
             }
 
 
-            var src = new Uri(image.Attributes["src"].Value);
+            var src = EnsureHttp(image.Attributes["src"].Value);
 
-            return ComicParseResult.Succeed(AdjustSchemeToHttp(src), date);
+            return ComicParseResult.Succeed(src, date);
 
         }
 
-        private static Uri AdjustSchemeToHttp(Uri src)
+        private static Uri EnsureHttp(string url)
         {
-            var builder = new UriBuilder(src);
-            builder.Scheme = "http";
-            return builder.Uri;
+            if (!url.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                url = "http://" + url.TrimStart('/');
+
+            return new Uri(url);
         }
 
         public static string ParsePermalink(string html)

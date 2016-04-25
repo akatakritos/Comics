@@ -54,5 +54,14 @@ namespace Comics.Tests.Core.Parsers
         {
             Check.ThatCode(() => ExplosmParser.Parse("")).Throws<ArgumentException>();
         }
+
+        [Fact]
+        public void QueryStringsAreNotEncoded()
+        {
+            var html = Fixture.Load("explosm-4279");
+            var result = ExplosmParser.Parse(html);
+
+            Check.That(result.ImageUri).IsEqualTo(new Uri("http://files.explosm.net/comics/Rob/needle.png?t=591AF3"));
+        }
     }
 }
