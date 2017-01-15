@@ -16,16 +16,20 @@ namespace Comics.Tests.Core.Downloaders
     public class PearlsDownloaderTests
     {
         private readonly AutoMoqer _mocker;
+        private readonly DateTime Today = new DateTime(2017, 01, 13);
+        private const string TodayFixture = "pearls-2017-01-13";
+        private const int TodayComicNumber = 20170113;
+        private const string TodayUrl = "http://www.gocomics.com/pearlsbeforeswine/2017/01/13";
         public PearlsDownloaderTests()
         {
             var mocker = new AutoMoqer();
             var result20151204 = new ComicDownloadResult(
-                Fixture.Load("pearls-2015-12-04"),
-                20151204,
-                new Uri("http://www.gocomics.com/pearlsbeforeswine/2015/12/04"));
+                Fixture.Load(TodayFixture),
+                TodayComicNumber,
+                new Uri(TodayUrl));
 
             mocker.GetMock<IPearlsWebClient>()
-                .Setup(m => m.GetComicHtml(new DateTime(2015, 12, 04)))
+                .Setup(m => m.GetComicHtml(Today))
                 .Returns(result20151204);
 
             _mocker = mocker;
@@ -35,46 +39,49 @@ namespace Comics.Tests.Core.Downloaders
         public void LoadsNewComicsUpToToday()
         {
             var downloader = _mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 4); // mock Today
+            downloader.Today = Today;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.PublishedDate).IsEqualTo(new DateTime(2015, 12, 4));
+            Check.That(comic.PublishedDate).IsEqualTo(Today);
         }
 
         [Fact]
         public void ItSkipsFailedComics() //like it if hasnt been posted yet
         {
             var mocker = new AutoMoqer();
-            var result20151204 = new ComicDownloadResult(
-                Fixture.Load("pearls-2015-12-04"),
-                20151204,
-                new Uri("http://www.gocomics.com/pearlsbeforeswine/2015/12/04")); ;
+            var todayResult = new ComicDownloadResult(
+                Fixture.Load(TodayFixture),
+                TodayComicNumber,
+                new Uri(TodayUrl)); ;
+
+            var tomorrow = Today.AddDays(1);
 
             mocker.GetMock<IPearlsWebClient>()
-                .Setup(m => m.GetComicHtml(new DateTime(2015, 12, 4)))
-                .Returns(result20151204);
+                .Setup(m => m.GetComicHtml(Today))
+                .Returns(todayResult);
+
             mocker.GetMock<IPearlsWebClient>()
-                .Setup(m => m.GetComicHtml(new DateTime(2015, 12, 5)))
-                .Throws(new ComicNotFoundException(new Uri("http://www.gocomics.com/pearlsbeforeswine/2015/12/05")));
+                .Setup(m => m.GetComicHtml(tomorrow))
+                .Throws(new ComicNotFoundException(new Uri("http://www.gocomics.com/pearlsbeforeswine/" + Today.AddDays(1).ToString("yyyy/MM/dd"))));
 
             var downloader = mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 5);
+            downloader.Today = tomorrow;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.PublishedDate).IsEqualTo(new DateTime(2015, 12, 4));
+            Check.That(comic.PublishedDate).IsEqualTo(Today);
         }
 
         [Fact]
         public void ItSetsTheComicTypeToPearls()
         {
             var downloader = _mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 4); // mock Today
+            downloader.Today = Today;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
             Check.That(comic.ComicType).IsEqualTo(ComicType.Pearls);
@@ -84,48 +91,48 @@ namespace Comics.Tests.Core.Downloaders
         public void ItSetsTheComicNumberBasedOnTheDate()
         {
             var downloader = _mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 4); // mock Today
+            downloader.Today = Today;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.ComicNumber).IsEqualTo(20151204);
+            Check.That(comic.ComicNumber).IsEqualTo(TodayComicNumber);
         }
 
         [Fact]
         public void ItSetsTheImageSrc()
         {
             var downloader = _mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 4); // mock Today
+            downloader.Today = Today;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.ImageSrc).IsEqualTo("http://assets.amuniversal.com/5a7e112071f701331e71005056a9545d");
+            Check.That(comic.ImageSrc).IsEqualTo("http://assets.amuniversal.com/3a70d0d0b3fa013428f8005056a9545d");
         }
 
         [Fact]
         public void ItSetsThePermalink()
         {
             var downloader = _mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 4); // mock Today
+            downloader.Today = Today;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.Permalink).IsEqualTo("http://www.gocomics.com/pearlsbeforeswine/2015/12/04");
+            Check.That(comic.Permalink).IsEqualTo(TodayUrl);
         }
 
         [Fact]
         public void ItSetsThePublishedDate()
         {
             var downloader = _mocker.Create<PearlsDownloader>();
-            downloader.Today = new DateTime(2015, 12, 4); // mock Today
+            downloader.Today = Today;
 
-            var lastComic = new Comic() { PublishedDate = new DateTime(2015, 12, 3) };
+            var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.PublishedDate).IsEqualTo(new DateTime(2015, 12, 4));
+            Check.That(comic.PublishedDate).IsEqualTo(Today);
         }
     }
 }

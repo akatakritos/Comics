@@ -17,8 +17,8 @@ namespace Comics.Core.Parsers
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var img = doc.QuerySelectorAll("img.strip")
-                .FirstOrDefault(s => !s.Attributes.Contains("width"));
+            var img = doc.QuerySelectorAll("picture.item-comic-image > img")
+                .FirstOrDefault();
             if (img == null)
                 return ComicParseResult.Fail("Could not find strip url");
 

@@ -185,6 +185,7 @@
     <Content Include="Fixtures\explosm-4279.txt" />
     <Content Include="Fixtures\explosm-latest.txt" />
     <Content Include="Fixtures\pearls-2015-12-04.txt" />
+    <Content Include="Fixtures\pearls-2017-01-13.txt" />
     <Content Include="License.txt" />
   </ItemGroup>
   <ItemGroup />

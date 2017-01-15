@@ -10,27 +10,28 @@ using Xunit;
 
 namespace Comics.Tests.Core.Parsers
 {
-
     public class PearlsParserTests
     {
+        const string LatestFixture = "pearls-2017-01-13";
+
         [Fact]
         public void Parse_FindsTheComicSrc()
         {
-            var html = Fixture.Load("pearls-2015-12-04");
+            var html = Fixture.Load(LatestFixture);
 
             var result = PearlsParser.Parse(html);
 
-            Check.That(result.ImageUri).IsEqualTo(new Uri("http://assets.amuniversal.com/5a7e112071f701331e71005056a9545d"));
+            Check.That(result.ImageUri).IsEqualTo(new Uri("http://assets.amuniversal.com/3a70d0d0b3fa013428f8005056a9545d"));
         }
 
         [Fact]
         public void Parse_FindsThePublishedDate()
         {
-            var html = Fixture.Load("pearls-2015-12-04");
+            var html = Fixture.Load(LatestFixture);
 
             var result = PearlsParser.Parse(html);
 
-            Check.That(result.PublishedDate).IsEqualTo(new DateTime(2015, 12, 4));
+            Check.That(result.PublishedDate).IsEqualTo(new DateTime(2017, 01, 13));
         }
 
         [Fact]
