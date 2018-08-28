@@ -183,6 +183,7 @@
     <Content Include="Fixtures\explosm-latest.txt" />
     <Content Include="Fixtures\pearls-2015-12-04.txt" />
     <Content Include="Fixtures\pearls-2017-01-13.txt" />
+    <Content Include="Fixtures\pearls-2018-08-02.txt" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />

@@ -16,7 +16,7 @@ namespace Comics.Core.Downloaders
     {
         public ComicDownloadResult GetComicHtml(DateTime publishedDate)
         {
-            var permalink = new Uri($"http://www.gocomics.com/pearlsbeforeswine/{publishedDate:yyyy/MM/dd}");
+            var permalink = new Uri($"https://www.gocomics.com/pearlsbeforeswine/{publishedDate:yyyy/MM/dd}");
             Trace.WriteLine($"Downloading {permalink}", nameof(PearlsWebClient));
 
             using (var handler = new HttpClientHandler() { AllowAutoRedirect = false })

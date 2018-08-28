@@ -43,7 +43,7 @@ namespace Comics.Tests.Core.Downloaders
 
             var result = client.GetComicHtml(new DateTime(2015, 12, 4));
 
-            Check.That(result.Permalink).IsEqualTo(new Uri("http://www.gocomics.com/pearlsbeforeswine/2015/12/04"));
+            Check.That(result.Permalink).IsEqualTo(new Uri("https://www.gocomics.com/pearlsbeforeswine/2015/12/04"));
         }
 
         [Fact]
@@ -61,6 +61,8 @@ namespace Comics.Tests.Core.Downloaders
             var client = new PearlsWebClient();
             var result = client.GetComicHtml(new DateTime(2015, 12, 4));
             var parseResult = PearlsParser.Parse(result.Content);
+
+            parseResult.AssertValid();
             Check.That(parseResult.ImageUri).IsNotNull();
         }
     }

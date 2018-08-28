@@ -12,7 +12,7 @@ namespace Comics.Tests.Core.Parsers
 {
     public class PearlsParserTests
     {
-        const string LatestFixture = "pearls-2017-01-13";
+        const string LatestFixture = "pearls-2018-08-02";
 
         [Fact]
         public void Parse_FindsTheComicSrc()
@@ -21,7 +21,7 @@ namespace Comics.Tests.Core.Parsers
 
             var result = PearlsParser.Parse(html);
 
-            Check.That(result.ImageUri).IsEqualTo(new Uri("http://assets.amuniversal.com/3a70d0d0b3fa013428f8005056a9545d"));
+            Check.That(result.ImageUri).IsEqualTo(new Uri("https://assets.amuniversal.com/ec1188a0718901364736005056a9545d"));
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace Comics.Tests.Core.Parsers
 
             var result = PearlsParser.Parse(html);
 
-            Check.That(result.PublishedDate).IsEqualTo(new DateTime(2017, 01, 13));
+            Check.That(result.PublishedDate).IsEqualTo(new DateTime(2018, 8, 2));
         }
 
         [Fact]

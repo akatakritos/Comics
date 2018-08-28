@@ -34,7 +34,7 @@ namespace Comics.Core.Parsers
             if (content == null)
                 return ComicParseResult.Fail("meta tag did not have content attribute");
 
-            var dateString = content.Replace("http://www.gocomics.com/pearlsbeforeswine/", "");
+            var dateString = content.Replace("https://www.gocomics.com/pearlsbeforeswine/", "");
 
             var date = DateTime.ParseExact(dateString, "yyyy/MM/dd", CultureInfo.InvariantCulture);
             var uri = new Uri(src);

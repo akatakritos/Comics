@@ -16,10 +16,11 @@ namespace Comics.Tests.Core.Downloaders
     public class PearlsDownloaderTests
     {
         private readonly AutoMoqer _mocker;
-        private readonly DateTime Today = new DateTime(2017, 01, 13);
-        private const string TodayFixture = "pearls-2017-01-13";
-        private const int TodayComicNumber = 20170113;
-        private const string TodayUrl = "http://www.gocomics.com/pearlsbeforeswine/2017/01/13";
+        private readonly DateTime Today = new DateTime(2018, 8, 2);
+        private const string TodayFixture = "pearls-2018-08-02";
+        private const int TodayComicNumber = 20180802;
+        private const string TodayUrl = "http://www.gocomics.com/pearlsbeforeswine/2018/08/02";
+
         public PearlsDownloaderTests()
         {
             var mocker = new AutoMoqer();
@@ -108,7 +109,7 @@ namespace Comics.Tests.Core.Downloaders
             var lastComic = new Comic() { PublishedDate = Today.AddDays(-1) };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.ImageSrc).IsEqualTo("http://assets.amuniversal.com/3a70d0d0b3fa013428f8005056a9545d");
+            Check.That(comic.ImageSrc).IsEqualTo("https://assets.amuniversal.com/ec1188a0718901364736005056a9545d");
         }
 
         [Fact]
