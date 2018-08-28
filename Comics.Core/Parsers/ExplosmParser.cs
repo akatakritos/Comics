@@ -25,14 +25,14 @@ namespace Comics.Core.Parsers
             }
 
 
-            var dateNode = doc.QuerySelector(".past-week-comic-title");
+            var dateNode = doc.QuerySelector("#comic-author");
             if (dateNode == null)
             {
                 return ComicParseResult.Fail("Could not find date elemenet");
             }
 
             DateTime date;
-            if (!DateTime.TryParseExact(dateNode.InnerText, "yyyy.MM.dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            if (!DateTime.TryParseExact(dateNode.FirstChild.InnerText.Trim(), "yyyy.MM.dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
             {
                 return ComicParseResult.Fail($"Could not parse date: '{dateNode.InnerText}'");
             }
@@ -57,8 +57,8 @@ namespace Comics.Core.Parsers
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var textbox = doc.GetElementbyId("permalink");
-            var urlOfCurrent = textbox.GetAttributeValue("value", null);
+            var link = doc.GetElementbyId("comic-social-link");
+            var urlOfCurrent = link.GetAttributeValue("href", null);
 
             return urlOfCurrent;
         }

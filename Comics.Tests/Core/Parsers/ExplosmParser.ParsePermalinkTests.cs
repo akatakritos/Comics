@@ -19,7 +19,7 @@ namespace Comics.Tests.Core.Parsers
 
             var permalink = ExplosmParser.ParsePermalink(html);
 
-            Check.That(permalink).IsEqualTo("http://explosm.net/comics/4125/");
+            Check.That(permalink).IsEqualTo("http://explosm.net/comics/5022/");
         }
     }
 }

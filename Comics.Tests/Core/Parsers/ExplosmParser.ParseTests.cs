@@ -19,6 +19,7 @@ namespace Comics.Tests.Core.Parsers
 
             var result = ExplosmParser.Parse(html);
 
+            result.AssertValid();
             Check.That(result.ImageUri).IsEqualTo(new Uri("http://files.explosm.net/comics/Kris/knowingis.png"));
         }
 
@@ -29,6 +30,7 @@ namespace Comics.Tests.Core.Parsers
 
             var result = ExplosmParser.Parse(html);
 
+            result.AssertValid();
             Check.That(result.PublishedDate).IsEqualTo(new DateTime(2015, 11, 22));
         }
 
@@ -58,10 +60,11 @@ namespace Comics.Tests.Core.Parsers
         [Fact]
         public void QueryStringsAreNotEncoded()
         {
-            var html = Fixture.Load("explosm-4279");
+            var html = Fixture.Load("explosm-latest");
             var result = ExplosmParser.Parse(html);
-
-            Check.That(result.ImageUri).IsEqualTo(new Uri("http://files.explosm.net/comics/Rob/needle.png?t=591AF3"));
+            
+            result.AssertValid();
+            Check.That(result.ImageUri).IsEqualTo(new Uri("http://files.explosm.net/comics/Rob/thatgirl3.png?t=5CE637"));
         }
     }
 }

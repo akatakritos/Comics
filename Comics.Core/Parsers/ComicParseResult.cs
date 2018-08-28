@@ -34,5 +34,13 @@ namespace Comics.Core.Parsers
         {
             return new ComicParseResult(imageUri, publishedDate);
         }
+
+        public void AssertValid()
+        {
+            if (!Succeeded)
+            {
+                throw new Exception(FailureMessage);
+            }
+        }
     }
 }
