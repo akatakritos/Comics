@@ -60,7 +60,7 @@ namespace Comics.Core.Downloaders
         {
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
-            var nextLink = doc.QuerySelector("a.next-comic");
+            var nextLink = doc.QuerySelector("a.nav-next");
 
             var nextUrl = nextLink?.GetAttributeValue("href", null);
             if (nextUrl == null)

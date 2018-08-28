@@ -18,19 +18,23 @@ namespace Comics.Tests.Core.Downloaders
     {
         private readonly AutoMoqer _mocker;
 
+        const int SecondMostRecentNumber = 5021;
+        const int MostRecentNumber = 5022;
+
         public ExplosmDownloaderTests()
         {
+
             var mocker = new AutoMoqer();
-            // depends on 4125 fixture not having a next link
-            var result4124 = new ComicDownloadResult(Fixture.Load("explosm-4124"), 4124, new Uri("http://explosm.net/comics/4124/"));
-            var result4125 = new ComicDownloadResult(Fixture.Load("explosm-4125"), 4125, new Uri("http://explosm.net/comics/4125/"));
+            // depends on explosm-latest fixture not having a next link
+            var secondMostRecentResult = new ComicDownloadResult(Fixture.Load($"explosm-latest-minus-one"), SecondMostRecentNumber, new Uri($"http://explosm.net/comics/{SecondMostRecentNumber}/"));
+            var mostRecentResult = new ComicDownloadResult(Fixture.Load("explosm-latest"), MostRecentNumber, new Uri($"http://explosm.net/comics/{MostRecentNumber}/"));
 
             mocker.GetMock<IExplosmWebClient>()
-                .Setup(m => m.GetComicHtml(4124))
-                .Returns(result4124);
+                .Setup(m => m.GetComicHtml(SecondMostRecentNumber))
+                .Returns(secondMostRecentResult);
             mocker.GetMock<IExplosmWebClient>()
-                .Setup(m => m.GetComicHtml(4125))
-                .Returns(result4125);
+                .Setup(m => m.GetComicHtml(MostRecentNumber))
+                .Returns(mostRecentResult);
 
             _mocker = mocker;
         }
@@ -40,10 +44,10 @@ namespace Comics.Tests.Core.Downloaders
         {
             var downloader = _mocker.Create<ExplosmDownloader>();
 
-            var lastComic = new Comic { ComicNumber = 4124 };
+            var lastComic = new Comic { ComicNumber = SecondMostRecentNumber };
             var comics = downloader.GetNewComicsSince(lastComic);
 
-            Check.That(comics.Single().ComicNumber).IsEqualTo(4125);
+            Check.That(comics.Single().ComicNumber).IsEqualTo(MostRecentNumber);
         }
 
         [Fact]
@@ -51,7 +55,7 @@ namespace Comics.Tests.Core.Downloaders
         {
             var downloader = _mocker.Create<ExplosmDownloader>();
 
-            var lastComic = new Comic { ComicNumber = 4124 };
+            var lastComic = new Comic { ComicNumber = SecondMostRecentNumber };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
             Check.That(comic.ComicType).IsEqualTo(ComicType.Explosm);
@@ -62,10 +66,10 @@ namespace Comics.Tests.Core.Downloaders
         {
             var downloader = _mocker.Create<ExplosmDownloader>();
 
-            var lastComic = new Comic { ComicNumber = 4124 };
+            var lastComic = new Comic { ComicNumber = SecondMostRecentNumber };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.ComicNumber).IsEqualTo(4125);
+            Check.That(comic.ComicNumber).IsEqualTo(MostRecentNumber);
         }
 
         [Fact]
@@ -73,10 +77,10 @@ namespace Comics.Tests.Core.Downloaders
         {
             var downloader = _mocker.Create<ExplosmDownloader>();
 
-            var lastComic = new Comic { ComicNumber = 4124 };
+            var lastComic = new Comic { ComicNumber = SecondMostRecentNumber };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.ImageSrc).IsEqualTo("http://files.explosm.net/comics/Kris/knowingis.png");
+            Check.That(comic.ImageSrc).IsEqualTo("http://files.explosm.net/comics/Rob/thatgirl3.png?t=5CE637");
         }
 
         [Fact]
@@ -84,10 +88,10 @@ namespace Comics.Tests.Core.Downloaders
         {
             var downloader = _mocker.Create<ExplosmDownloader>();
 
-            var lastComic = new Comic { ComicNumber = 4124 };
+            var lastComic = new Comic { ComicNumber = SecondMostRecentNumber };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.Permalink).IsEqualTo("http://explosm.net/comics/4125/");
+            Check.That(comic.Permalink).IsEqualTo($"http://explosm.net/comics/{MostRecentNumber}/");
         }
 
         [Fact]
@@ -95,10 +99,10 @@ namespace Comics.Tests.Core.Downloaders
         {
             var downloader = _mocker.Create<ExplosmDownloader>();
 
-            var lastComic = new Comic { ComicNumber = 4124 };
+            var lastComic = new Comic { ComicNumber = SecondMostRecentNumber };
             var comic = downloader.GetNewComicsSince(lastComic).Single();
 
-            Check.That(comic.PublishedDate).IsEqualTo(new DateTime(2015, 11, 22));
+            Check.That(comic.PublishedDate).IsEqualTo(new DateTime(2018, 8, 27));
         }
     }
 }
