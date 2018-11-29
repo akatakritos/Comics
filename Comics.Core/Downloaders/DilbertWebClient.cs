@@ -16,7 +16,8 @@ namespace Comics.Core.Downloaders
     {
         public ComicDownloadResult GetComicHtml(DateTime publishedDate)
         {
-            var permalink = new Uri($"http://dilbert.com/strip/{publishedDate:yyyy-MM-dd}");
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            var permalink = new Uri($"https://dilbert.com/strip/{publishedDate:yyyy-MM-dd}");
             Trace.WriteLine($"Downloading {permalink}", nameof(DilbertWebClient));
 
             using (var handler = new HttpClientHandler() { AllowAutoRedirect = false })

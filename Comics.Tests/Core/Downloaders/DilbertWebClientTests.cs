@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 using Comics.Core.Downloaders;
 using Comics.Core.Parsers;
@@ -14,6 +15,11 @@ namespace Comics.Tests.Core.Downloaders
     [Trait("Category", "Integration")]
     public class DilbertWebClientTests
     {
+        public DilbertWebClientTests()
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+        }
+
         [Fact]
         public void CanDownloadComicHtml()
         {
@@ -41,7 +47,7 @@ namespace Comics.Tests.Core.Downloaders
 
             var result = client.GetComicHtml(new DateTime(2015, 11, 23));
 
-            Check.That(result.Permalink).IsEqualTo(new Uri("http://dilbert.com/strip/2015-11-23"));
+            Check.That(result.Permalink).IsEqualTo(new Uri("https://dilbert.com/strip/2015-11-23"));
         }
 
         [Fact]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 using Comics.Core.Downloaders;
 using Comics.Core.Parsers;
@@ -14,6 +15,11 @@ namespace Comics.Tests.Core.Downloaders
     [Trait("Category", "Integration")]
     public class ExplosmWebClientTests
     {
+        public ExplosmWebClientTests()
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+        }
+
         [Fact]
         public void CanDownloadAComic()
         {
