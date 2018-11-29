@@ -27,6 +27,9 @@ namespace Comics.Core.Parsers
             if (date == null)
                 return ComicParseResult.Fail("Could not find publish date");
 
+            if (src.StartsWith("//"))
+                src = "https:" + src;
+
             return ComicParseResult.Succeed(new Uri(src), DateTime.Parse(date));
         }
     }

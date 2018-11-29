@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fixtures\dilbert-2015-11-23.txt" />
+    <Content Include="Fixtures\dilbert-2018-11-29.txt" />
     <Content Include="Fixtures\explosm-4124.txt" />
     <Content Include="Fixtures\explosm-4125.txt" />
     <Content Include="Fixtures\explosm-4279.txt" />

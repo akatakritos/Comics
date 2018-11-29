@@ -15,21 +15,21 @@ namespace Comics.Tests.Core.Parsers
         [Fact]
         public void Parse_FindsTheComicSrc()
         {
-            var html = Fixture.Load("dilbert-2015-11-23");
+            var html = Fixture.Load("dilbert-2018-11-29");
 
             var result = DilbertParser.Parse(html);
 
-            Check.That(result.ImageUri).IsEqualTo(new Uri("http://assets.amuniversal.com/041159a06560013319a6005056a9545d"));
+            Check.That(result.ImageUri).IsEqualTo(new Uri("https://assets.amuniversal.com/ec914e90c8c601366722005056a9545d"));
         }
 
         [Fact]
         public void Parse_FindsThePublishedDate()
         {
-            var html = Fixture.Load("dilbert-2015-11-23");
+            var html = Fixture.Load("dilbert-2018-11-29");
 
             var result = DilbertParser.Parse(html);
 
-            Check.That(result.PublishedDate).IsEqualTo(new DateTime(2015, 11, 23));
+            Check.That(result.PublishedDate).IsEqualTo(new DateTime(2018, 11, 29));
         }
 
         [Fact]
